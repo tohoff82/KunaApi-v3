@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KunaApi.POCO
+namespace KunaApi.POCO.Requests
 {
     public class KunaRequest
     {
