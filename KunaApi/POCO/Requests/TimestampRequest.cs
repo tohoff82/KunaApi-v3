@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KunaApi.POCO.Requests
+﻿namespace KunaApi.POCO.Requests
 {
     public class TimestampRequest : KunaRequest
     {
