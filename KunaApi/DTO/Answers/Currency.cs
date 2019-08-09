@@ -5,7 +5,7 @@ namespace KunaApi.DTO.Answers
     public class Currency
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public short Id { get; set; }
 
         [JsonProperty("code")]
         public string Code { get; set; }
@@ -14,19 +14,19 @@ namespace KunaApi.DTO.Answers
         public string Name { get; set; }
 
         [JsonProperty("has_memo")]
-        public bool HasMemo { get; set; }
+        public bool? HasMemo { get; set; }
 
         [JsonProperty("icons")]
         public Icons Icons { get; set; }
 
         [JsonProperty("coin")]
-        public bool AsCoin { get; set; }
+        public bool IsCoin { get; set; }
 
         [JsonProperty("explorer_link")]
         public string ExplorerLinkTamplate { get; set; }
 
         [JsonProperty("sort_order")]
-        public int Offset { get; set; }
+        public short Offset { get; set; }
 
         [JsonProperty("precision")]
         public Precision Precision { get; set; }
