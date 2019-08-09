@@ -8,5 +8,7 @@ namespace KunaApi.Services
     {
         Task<Timestamp> GetTimestampAsync();
         Task<IEnumerable<Currency>> GetCurrenciesAsync();
+        Task<IEnumerable<Rate>> GetRatesAsync();
+        Task<Rate> GetRateAsync(string currencyName);
     }
 }
