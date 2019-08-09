@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using KunaApi.DTO.Answers;
-using KunaApi.POCO.Requests;
 
 namespace KunaApi.POCO
 {
