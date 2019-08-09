@@ -21,5 +21,8 @@ namespace KunaApi.Services.Implements
 
         public async Task<Rate> GetRateAsync(string currencyName)
             => await HttpGetAsync<Rate>(new RateRequest(currencyName));
+
+        public async Task<IEnumerable<Market>> GetMarketsAsync()
+            => await HttpGetAsync<IEnumerable<Market>>(new MarketRequest());
     }
 }

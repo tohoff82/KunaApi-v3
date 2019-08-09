@@ -10,5 +10,6 @@ namespace KunaApi.Services
         Task<IEnumerable<Currency>> GetCurrenciesAsync();
         Task<IEnumerable<Rate>> GetRatesAsync();
         Task<Rate> GetRateAsync(string currencyName);
+        Task<IEnumerable<Market>> GetMarketsAsync();
     }
 }
