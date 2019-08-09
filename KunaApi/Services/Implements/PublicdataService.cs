@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using KunaApi.DTO.Answers;
 using KunaApi.POCO.Requests;
@@ -14,5 +12,8 @@ namespace KunaApi.Services.Implements
 
         public async Task<Timestamp> GetTimestampAsync()
             => await HttpGetAsync<Timestamp>(new TimestampRequest());
+
+        public async Task<IEnumerable<Currency>> GetCurrenciesAsync()
+            => await HttpGetAsync<IEnumerable<Currency>>(new CurrencyesRequest());
     }
 }
