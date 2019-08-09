@@ -20,7 +20,7 @@ namespace KunaApi.DTO.Answers
         public byte QuotePrecision { get; set; }
 
         [JsonProperty("display_precision")]
-        public byte DisplayPrecision { get; set; }
+        public sbyte DisplayPrecision { get; set; }
 
         [JsonProperty("price_change")]
         public float PriceChange { get; set; }
