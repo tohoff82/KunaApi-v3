@@ -6,6 +6,6 @@
             => sb.Append("/exchange-rates");
 
         public RateRequest(string currencyName) : this()
-            => sb.Append(currencyName.ToLower());
+            => sb.AppendFormat("/{0}", currencyName.ToLower());
     }
 }
