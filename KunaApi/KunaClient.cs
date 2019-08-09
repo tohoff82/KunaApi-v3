@@ -5,11 +5,11 @@ using System;
 
 namespace KunaApi
 {
-    public class Kuna
+    public class KunaClient
     {
         private readonly IServiceProvider provider;
 
-        public Kuna()
+        public KunaClient()
         {
             provider = new ServiceCollection()
                 .AddTransient<IPublicdataService, PublicdataService>()
