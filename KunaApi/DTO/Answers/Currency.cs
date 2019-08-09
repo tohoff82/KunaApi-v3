@@ -51,9 +51,9 @@ namespace KunaApi.DTO.Answers
     public class Precision
     {
         [JsonProperty("real")]
-        byte Real { get; set; }
+        public byte Real { get; set; }
 
         [JsonProperty("trade")]
-        byte Trade { get; set; }
+        public byte Trade { get; set; }
     }
 }
