@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -35,12 +36,12 @@ namespace KunaApi.POCO
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        private void CheckStatus(bool is200_OK, string json)
+        private void CheckStatus(bool isOK, string json)
         {
-            if (!is200_OK)
+            if (!isOK)
             {
                 var answ = JsonConvert.DeserializeObject<KunaError>(json);
-                throw new Exception(answ.Error.ErrorMessage);
+                throw new Exception(answ.Errors.FirstOrDefault());
             }
         }
     }
