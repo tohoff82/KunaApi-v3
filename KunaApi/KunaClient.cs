@@ -13,11 +13,15 @@ namespace KunaApi
         {
             provider = new ServiceCollection()
                 .AddSingleton<IPublicdataService, PublicdataService>()
+                .AddSingleton<IAccountServiece, AccountService>()
                 .AddTransient<IModelbuilderService, ModelbuilderService>()
                 .BuildServiceProvider();
         }
 
         public IPublicdataService Publicdata
             => provider.GetService<IPublicdataService>();
+
+        public IAccountServiece Account
+            => provider.GetService<IAccountServiece>();
     }
 }
