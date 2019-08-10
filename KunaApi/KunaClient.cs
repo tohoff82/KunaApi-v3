@@ -1,7 +1,7 @@
-﻿using KunaApi.Services;
+﻿using System;
+using KunaApi.Services;
 using KunaApi.Services.Implements;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace KunaApi
 {
@@ -12,7 +12,8 @@ namespace KunaApi
         public KunaClient()
         {
             provider = new ServiceCollection()
-                .AddTransient<IPublicdataService, PublicdataService>()
+                .AddSingleton<IPublicdataService, PublicdataService>()
+                .AddTransient<IConvertorService, ConvertorService>()
                 .BuildServiceProvider();
         }
 
