@@ -13,7 +13,7 @@ namespace KunaApi
         {
             provider = new ServiceCollection()
                 .AddSingleton<IPublicdataService, PublicdataService>()
-                .AddTransient<IConvertorService, ConvertorService>()
+                .AddTransient<IModelbuilderService, ModelbuilderService>()
                 .BuildServiceProvider();
         }
 
