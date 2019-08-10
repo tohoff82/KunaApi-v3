@@ -7,6 +7,6 @@ namespace KunaApi.Services
     {
         Ticker CreateTicker(List<string> crudeTicker);
         IReadOnlyCollection<Ticker> CreateTickerList(List<List<string>> crudeTickers);
-        OrderBook CreateOrderbook(List<List<string>> crudeOrderbook);
+        Orderbook CreateOrderbook(List<List<string>> crudeOrderbook);
     }
 }

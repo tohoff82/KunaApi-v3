@@ -38,12 +38,37 @@ namespace KunaApi.Services.Implements
 
         public Orderbook CreateOrderbook(List<List<string>> crudeOrderbook)
         {
-            var orderbookList = new List<Orderbook>();
+            var bidCollection = new List<OrderbookItem>();
+            var askCollection = new List<OrderbookItem>();
+
+            foreach (var crudeOrderbookItem in crudeOrderbook)
+            {
+                var item = CreateOrderbookItem(crudeOrderbookItem);
+                if (item.Volume > 0) bidCollection.Add(item);
+                else askCollection.Add(ConvertOrderbookItem(item));
+            }
+
+            return new Orderbook
+            {
+                BidCollection = bidCollection,
+                AskCollection = askCollection
+            };
         }
 
         private OrderbookItem CreateOrderbookItem(List<string> crudeOrderbookItem)
-        {
+            => new OrderbookItem
+            {
+                Price = float.Parse(crudeOrderbookItem[0], Any, InvariantCulture),
+                Volume = float.Parse(crudeOrderbookItem[1], Any, InvariantCulture),
+                Quantity = short.Parse(crudeOrderbookItem[2], Any, InvariantCulture)
+            };
 
-        }
+        private OrderbookItem ConvertOrderbookItem(OrderbookItem obi)
+            => new OrderbookItem
+            {
+                Price = obi.Price,
+                Volume = -obi.Volume,
+                Quantity = obi.Quantity
+            };
     }
 }
