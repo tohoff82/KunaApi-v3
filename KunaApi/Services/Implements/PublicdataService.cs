@@ -29,6 +29,9 @@ namespace KunaApi.Services.Implements
         public async Task<IEnumerable<Market>> GetMarketsAsync()
             => await HttpGetAsync<IEnumerable<Market>>(new MarketRequest());
 
+        public async Task<IEnumerable<Fee>> GetFeesAsync()
+            => await HttpGetAsync<IEnumerable<Fee>>(new FeesRequest());
+
         public async Task<IEnumerable<Ticker>> GetTickersAsync()
         {
             var crudeTickers = await HttpGetAsync<List<List<string>>>(new TickerRequest("ALL"));
@@ -46,6 +49,5 @@ namespace KunaApi.Services.Implements
             var crudeOrderbook = await HttpGetAsync<List<List<string>>>(new OrderbookRequest(marketMarker));
             return _modelbuilder.CreateOrderbook(crudeOrderbook);
         }
-            
     }
 }
