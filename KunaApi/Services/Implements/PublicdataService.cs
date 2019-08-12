@@ -9,10 +9,10 @@ namespace KunaApi.Services.Implements
 {
     public class PublicdataService : KunaHttp, IPublicdataService
     {
-        private readonly IModelbuilderService _modelbuilder;
+        private readonly IModelbuilderService _builder;
 
-        public PublicdataService(IModelbuilderService modelbuilder) : base()
-            => _modelbuilder = modelbuilder;
+        public PublicdataService(IModelbuilderService builder) : base()
+            => _builder = builder;
 
         public async Task<Timestamp> GetTimestampAsync()
             => await HttpGetAsync<Timestamp>(new TimestampRequest());
@@ -34,20 +34,20 @@ namespace KunaApi.Services.Implements
 
         public async Task<IEnumerable<Ticker>> GetTickersAsync()
         {
-            var crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest("ALL"));
-            return _modelbuilder.CreateTickerList(crudeTickers);
+            string[][] crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest("ALL"));
+            return _builder.CreateTickerList(crudeTickers);
         }
 
         public async Task<Ticker> GetTickerAsync(string marketMarker)
         {
-            var crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest(marketMarker));
-            return _modelbuilder.CreateTicker(crudeTickers.First());
+            string[][] crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest(marketMarker));
+            return _builder.CreateTicker(crudeTickers.FirstOrDefault());
         }
 
         public async Task<Orderbook> GetOrderbookAsync(string marketMarker)
         {
-            var crudeOrderbook = await HttpGetAsync<string[][]>(new OrderbookRequest(marketMarker));
-            return _modelbuilder.CreateOrderbook(crudeOrderbook);
+            string[][] crudeOrderbook = await HttpGetAsync<string[][]>(new OrderbookRequest(marketMarker));
+            return _builder.CreateOrderbook(crudeOrderbook);
         }
     }
 }
