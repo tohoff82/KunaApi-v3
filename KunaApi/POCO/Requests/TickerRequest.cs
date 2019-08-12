@@ -3,9 +3,9 @@
     public class TickerRequest : KunaRequest
     {
         private TickerRequest() : base()
-            => sb.Append("/tickers");
+            => _path.Append("/tickers");
 
         public TickerRequest(string marketMarker) : this()
-            => sb.AppendFormat("?symbols={0}", marketMarker);
+            => _path.AppendFormat("?symbols={0}", marketMarker);
     }
 }

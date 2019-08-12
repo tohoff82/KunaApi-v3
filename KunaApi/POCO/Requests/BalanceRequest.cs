@@ -4,8 +4,8 @@
     {
         public BalanceRequest() : base()
         {
-            sb.Append("/auth/r/wallets");
-            crudeBody = new object();
+            _path.Append("/auth/r/wallets");
+            _bodyody = new object();
         }
     }
 }

@@ -3,6 +3,6 @@
     public class FeesRequest : KunaRequest
     {
         public FeesRequest() : base()
-            => sb.Append("/fees");
+            => _path.Append("/fees");
     }
 }

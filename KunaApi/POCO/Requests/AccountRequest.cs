@@ -4,8 +4,8 @@
     {
         public AccountRequest() : base()
         {
-            sb.Append("/auth/me");
-            crudeBody = new object();
+            _path.Append("/auth/me");
+            _bodyody = new object();
         }
     }
 }

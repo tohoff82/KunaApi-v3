@@ -3,6 +3,6 @@
     public class CurrencyesRequest : KunaRequest
     {
         public CurrencyesRequest() : base()
-            => sb.Append("/currencies");
+            => _path.Append("/currencies");
     }
 }

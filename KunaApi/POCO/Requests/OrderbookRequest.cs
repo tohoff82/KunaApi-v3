@@ -3,6 +3,6 @@
     public class OrderbookRequest : KunaRequest
     {
         public OrderbookRequest(string marketMarker) : base()
-            => sb.AppendFormat("/book/{0}", marketMarker);
+            => _path.AppendFormat("/book/{0}", marketMarker);
     }
 }

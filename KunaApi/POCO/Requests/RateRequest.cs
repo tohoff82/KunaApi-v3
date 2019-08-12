@@ -3,9 +3,9 @@
     public class RateRequest : KunaRequest
     {
         public RateRequest() : base()
-            => sb.Append("/exchange-rates");
+            => _path.Append("/exchange-rates");
 
         public RateRequest(string currencyName) : this()
-            => sb.AppendFormat("/{0}", currencyName.ToLower());
+            => _path.AppendFormat("/{0}", currencyName.ToLower());
     }
 }
