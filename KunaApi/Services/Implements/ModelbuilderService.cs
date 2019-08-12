@@ -5,9 +5,32 @@ using static System.Globalization.CultureInfo;
 using static System.Globalization.NumberStyles;
 
 namespace KunaApi.Services.Implements
-{
+{    
+
     public class ModelbuilderService : IModelbuilderService
     {
+        public IReadOnlyCollection<Balance> CreateBalances(List<List<string>> crudeBalances)
+        {
+            var balances = new List<Balance>();
+
+            foreach (var crudeBalance in crudeBalances)
+            {
+                balances.Add(CreateBalance(crudeBalance));
+            }
+
+            return balances;
+        }
+
+        private Balance CreateBalance(List<string> crudeBalance)
+            => new Balance
+            {
+                BalanceMarker = crudeBalance[0],
+                CurrencyMarker = crudeBalance[1],
+                FullBalace = float.Parse(crudeBalance[2], Any, InvariantCulture),
+                AvailableFunds = float.Parse(crudeBalance[4], Any, InvariantCulture)
+            };
+
+
         public Ticker CreateTicker(List<string> crudeTicker)
             => new Ticker
             {
