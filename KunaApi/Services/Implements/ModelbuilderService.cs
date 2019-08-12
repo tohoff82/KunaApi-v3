@@ -9,6 +9,51 @@ namespace KunaApi.Services.Implements
 
     public class ModelbuilderService : IModelbuilderService
     {
+        #region Orders Region
+        public IEnumerable<Order> CreateOrders(string[][] crudeOrders)
+        {
+            var orders = new List<Order>();
+
+            foreach (string[] crudeOrder in crudeOrders)
+            {
+                orders.Add(CreateOrder(crudeOrder));
+            }
+
+            return orders;
+        }
+
+        public Order CreateOrder(string[] crudeOrder)
+        {
+            var order = new Order
+            {
+                Id = long.Parse(crudeOrder[0], Any, InvariantCulture),
+                MarketMarker = crudeOrder[3],
+                CreationTime = long.Parse(crudeOrder[4], Any, InvariantCulture),
+                UpdateTime = long.Parse(crudeOrder[5], Any, InvariantCulture),
+                Volume = float.Parse(crudeOrder[6], Any, InvariantCulture),
+                Type = crudeOrder[8],
+                Status = crudeOrder[13],
+                Price = float.Parse(crudeOrder[16], Any, InvariantCulture),
+                AveragePrice = float.Parse(crudeOrder[17], Any, InvariantCulture)
+            };
+
+            float startVolume = float.Parse(crudeOrder[7], Any, InvariantCulture);
+
+            if (startVolume < 0)
+            {
+                order.StartVolume = -startVolume;
+                order.Side = "SELL";
+            } else
+            {
+                order.StartVolume = startVolume;
+                order.Side = "BUY";
+            }
+            return order;
+        }
+
+        #endregion
+
+        #region Balance Region
         public IEnumerable<Balance> CreateBalances(string[][] crudeBalances)
         {
             var balances = new List<Balance>();
@@ -29,8 +74,9 @@ namespace KunaApi.Services.Implements
                 FullBalace = float.Parse(crudeBalance[2], Any, InvariantCulture),
                 AvailableFunds = float.Parse(crudeBalance[4], Any, InvariantCulture)
             };
+        #endregion
 
-
+        #region Ticker Region
         public Ticker CreateTicker(string[] crudeTicker)
             => new Ticker
             {
@@ -58,7 +104,9 @@ namespace KunaApi.Services.Implements
 
             return tickerList;
         }
+        #endregion
 
+        #region OrderBook Region
         public Orderbook CreateOrderbook(string[][] crudeOrderbook)
         {
             var bidCollection = new List<OrderbookItem>();
@@ -93,5 +141,6 @@ namespace KunaApi.Services.Implements
                 Volume = -obi.Volume,
                 Quantity = obi.Quantity
             };
+        #endregion
     }
 }

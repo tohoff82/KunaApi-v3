@@ -9,5 +9,6 @@ namespace KunaApi.Services
         IEnumerable<Ticker> CreateTickerList(string[][] crudeTickers);
         Orderbook CreateOrderbook(string[][] crudeOrderbook);
         IEnumerable<Balance> CreateBalances(string[][] crudeBalances);
+        IEnumerable<Order> CreateOrders(string[][] crudeOrders);
     }
 }
