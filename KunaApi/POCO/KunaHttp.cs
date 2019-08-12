@@ -33,9 +33,7 @@ namespace KunaApi.POCO
         {
             string nonce = Nonce.ToString();
             string signature = Encrypt(request.Signature(nonce), secretKey);
-            httpClient.DefaultRequestHeaders.Add("Kun-Signature", signature);
-            httpClient.DefaultRequestHeaders.Add("Kun-ApiKey", publicKey);
-            httpClient.DefaultRequestHeaders.Add("Kun-Nonce", nonce);
+            UpdateHeaders(nonce, signature, publicKey);
 
             using (var response = await httpClient.PostAsync(request.Uri,
                 new StringContent(request.Body, Encoding.UTF8, shema)))
@@ -74,5 +72,15 @@ namespace KunaApi.POCO
 
         private long Nonce
             => DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+        private void UpdateHeaders(string nonce, string signature, string pubKey)
+        {
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.ConnectionClose = false;
+            httpClient.DefaultRequestHeaders.Add("Kun-Signature", signature);
+            httpClient.DefaultRequestHeaders.Add("Kun-ApiKey", pubKey);
+            httpClient.DefaultRequestHeaders.Add("Kun-Nonce", nonce);
+            httpClient.DefaultRequestHeaders.Add("Accept", shema);
+        }
     }
 }
