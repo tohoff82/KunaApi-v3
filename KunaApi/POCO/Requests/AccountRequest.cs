@@ -5,7 +5,7 @@
         public AccountRequest() : base()
         {
             _path.Append("/auth/me");
-            _bodyody = new object();
+            _requestBody = new object();
         }
     }
 }

@@ -5,7 +5,7 @@
         public BalanceRequest() : base()
         {
             _path.Append("/auth/r/wallets");
-            _bodyody = new object();
+            _requestBody = new object();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace KunaApi.POCO
         private readonly string vers = "/v3";
 
         protected StringBuilder _path;
-        protected object _bodyody;
+        protected object _requestBody;
 
         public KunaRequest()
             => _path = new StringBuilder(vers);
@@ -18,7 +18,7 @@ namespace KunaApi.POCO
             => new Uri(_path.ToString(), UriKind.Relative);
 
         public string Body
-            => JsonConvert.SerializeObject(_bodyody);
+            => JsonConvert.SerializeObject(_requestBody);
 
         public string Signature(string nonce)
             => new StringBuilder(Uri.ToString())
