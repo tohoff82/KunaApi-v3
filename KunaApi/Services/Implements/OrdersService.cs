@@ -1,10 +1,28 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text;
+using KunaApi.POCO.Requests;
+using KunaApi.DTO.Answers;
+using KunaApi.POCO;
 
 namespace KunaApi.Services.Implements
 {
-    public class OrdersService : IOrdersService
+    public class OrdersService : KunaHttp, IOrdersService
     {
+        private readonly IModelbuilderService _builder;
+        private readonly IOptionsService _options;
+
+        public OrdersService(IModelbuilderService builder,
+                             IOptionsService options) : base()
+        {
+            _builder = builder;
+            _options = options;
+        }
+
+        public async Task<IEnumerable<Order>> GetActiveOrdersAsync(string marketMarker)
+        {
+            string[][] orders = await HttpPostAsync<string[][]>(new ActiveOrdersRequest(marketMarker),
+                                                    _options.PublicKey, _options.SecretKey);
+            return _builder.CreateOrders(orders);
+        }
     }
 }
