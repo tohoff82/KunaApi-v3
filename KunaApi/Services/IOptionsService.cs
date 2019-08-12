@@ -1,6 +1,6 @@
 ﻿namespace KunaApi.Services
 {
-    public interface IAuthconfigService
+    public interface IOptionsService
     {
         string PublicKey { get; }
         string SecretKey { get; }
