@@ -9,11 +9,11 @@ namespace KunaApi.Services.Implements
 
     public class ModelbuilderService : IModelbuilderService
     {
-        public IReadOnlyCollection<Balance> CreateBalances(List<List<string>> crudeBalances)
+        public IEnumerable<Balance> CreateBalances(string[][] crudeBalances)
         {
             var balances = new List<Balance>();
 
-            foreach (var crudeBalance in crudeBalances)
+            foreach (string[] crudeBalance in crudeBalances)
             {
                 balances.Add(CreateBalance(crudeBalance));
             }
@@ -21,7 +21,7 @@ namespace KunaApi.Services.Implements
             return balances;
         }
 
-        private Balance CreateBalance(List<string> crudeBalance)
+        private Balance CreateBalance(string[] crudeBalance)
             => new Balance
             {
                 BalanceMarker = crudeBalance[0],
@@ -31,7 +31,7 @@ namespace KunaApi.Services.Implements
             };
 
 
-        public Ticker CreateTicker(List<string> crudeTicker)
+        public Ticker CreateTicker(string[] crudeTicker)
             => new Ticker
             {
                 MarketMarker = crudeTicker[0],
@@ -47,11 +47,11 @@ namespace KunaApi.Services.Implements
                 MinDalyPrice = float.Parse(crudeTicker[10], Any, InvariantCulture)
             };
 
-        public IReadOnlyCollection<Ticker> CreateTickerList(List<List<string>> crudeTickers)
+        public IEnumerable<Ticker> CreateTickerList(string[][] crudeTickers)
         {
             var tickerList = new List<Ticker>();
             
-            foreach (var crudeTicker in crudeTickers)
+            foreach (string[] crudeTicker in crudeTickers)
             {
                 tickerList.Add(CreateTicker(crudeTicker));
             }
@@ -59,12 +59,12 @@ namespace KunaApi.Services.Implements
             return tickerList;
         }
 
-        public Orderbook CreateOrderbook(List<List<string>> crudeOrderbook)
+        public Orderbook CreateOrderbook(string[][] crudeOrderbook)
         {
             var bidCollection = new List<OrderbookItem>();
             var askCollection = new List<OrderbookItem>();
 
-            foreach (var crudeOrderbookItem in crudeOrderbook)
+            foreach (string[] crudeOrderbookItem in crudeOrderbook)
             {
                 var item = CreateOrderbookItem(crudeOrderbookItem);
                 if (item.Volume > 0) bidCollection.Add(item);
@@ -78,7 +78,7 @@ namespace KunaApi.Services.Implements
             };
         }
 
-        private OrderbookItem CreateOrderbookItem(List<string> crudeOrderbookItem)
+        private OrderbookItem CreateOrderbookItem(string[] crudeOrderbookItem)
             => new OrderbookItem
             {
                 Price = float.Parse(crudeOrderbookItem[0], Any, InvariantCulture),

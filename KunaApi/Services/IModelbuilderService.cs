@@ -5,9 +5,9 @@ namespace KunaApi.Services
 {
     public interface IModelbuilderService
     {
-        Ticker CreateTicker(List<string> crudeTicker);
-        IReadOnlyCollection<Ticker> CreateTickerList(List<List<string>> crudeTickers);
-        Orderbook CreateOrderbook(List<List<string>> crudeOrderbook);
-        IReadOnlyCollection<Balance> CreateBalances(List<List<string>> crudeBalances);
+        Ticker CreateTicker(string[] crudeTicker);
+        IEnumerable<Ticker> CreateTickerList(string[][] crudeTickers);
+        Orderbook CreateOrderbook(string[][] crudeOrderbook);
+        IEnumerable<Balance> CreateBalances(string[][] crudeBalances);
     }
 }
