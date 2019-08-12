@@ -19,12 +19,12 @@ namespace KunaApi
 
         public KunaClient(string pubKey, string secKey)
         {
-            Authconfig.publicKey = pubKey;
-            Authconfig.secretKey = secKey;
+            Configuration.publicKey = pubKey;
+            Configuration.secretKey = secKey;
 
             provider = new ServiceCollection()
                 .AddSingleton<IAccountServiece, AccountService>()
-                .AddTransient<IAuthconfigService, AuthconfigService>()
+                .AddTransient<IOptionsService, OptionsService>()
                 .AddTransient<IModelbuilderService, ModelbuilderService>()
                 .BuildServiceProvider();
         }
@@ -36,8 +36,9 @@ namespace KunaApi
             => provider.GetService<IAccountServiece>();
     }
 
-    public static class Authconfig
+    public static class Configuration
     {
+        // to do conect a key-value store azure
         public static string publicKey;
         public static string secretKey;
     }
