@@ -24,6 +24,7 @@ namespace KunaApi
 
             provider = new ServiceCollection()
                 .AddSingleton<IAccountServiece, AccountService>()
+                .AddTransient<IOrdersService, OrdersService>()
                 .AddTransient<IOptionsService, OptionsService>()
                 .AddTransient<IModelbuilderService, ModelbuilderService>()
                 .BuildServiceProvider();
@@ -34,6 +35,11 @@ namespace KunaApi
 
         public IAccountServiece Account
             => provider.GetService<IAccountServiece>();
+
+        public IOrdersService Orders
+            => provider.GetService<IOrdersService>();
+
+
     }
 
     public static class Configuration
