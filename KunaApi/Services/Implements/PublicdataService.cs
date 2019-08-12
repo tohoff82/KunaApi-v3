@@ -34,19 +34,19 @@ namespace KunaApi.Services.Implements
 
         public async Task<IEnumerable<Ticker>> GetTickersAsync()
         {
-            var crudeTickers = await HttpGetAsync<List<List<string>>>(new TickerRequest("ALL"));
+            var crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest("ALL"));
             return _modelbuilder.CreateTickerList(crudeTickers);
         }
 
         public async Task<Ticker> GetTickerAsync(string marketMarker)
         {
-            var crudeTickers = await HttpGetAsync<List<List<string>>>(new TickerRequest(marketMarker));
+            var crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest(marketMarker));
             return _modelbuilder.CreateTicker(crudeTickers.First());
         }
 
         public async Task<Orderbook> GetOrderbookAsync(string marketMarker)
         {
-            var crudeOrderbook = await HttpGetAsync<List<List<string>>>(new OrderbookRequest(marketMarker));
+            var crudeOrderbook = await HttpGetAsync<string[][]>(new OrderbookRequest(marketMarker));
             return _modelbuilder.CreateOrderbook(crudeOrderbook);
         }
     }
