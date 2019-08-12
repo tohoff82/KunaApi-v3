@@ -8,22 +8,25 @@ namespace KunaApi.Services.Implements
 {
     public class AccountService : KunaHttp, IAccountServiece
     {
-        private readonly IAuthconfigService _authconfig;
-        private readonly IModelbuilderService _modelbuilder;
+        private readonly IOptionsService _options;
+        private readonly IModelbuilderService _builder;
 
-        public AccountService(IAuthconfigService authconfig, IModelbuilderService modelbuilder) : base()
+        public AccountService(IOptionsService options,
+                              IModelbuilderService builder) : base()
         {
-            _authconfig = authconfig;
-            _modelbuilder = modelbuilder;
+            _options = options;
+            _builder = builder;
         }
 
         public async Task<Account> GetAccountAsync()
-            => await HttpPostAsync<Account>(new AccountRequest(), _authconfig.PublicKey, _authconfig.SecretKey);
+            => await HttpPostAsync<Account>(new AccountRequest(),
+                _options.PublicKey, _options.SecretKey);
 
         public async Task<IEnumerable<Balance>> GetBalanceAsync()
         {
-            string[][] crudeBalances = await HttpPostAsync<string[][]>(new BalanceRequest(), _authconfig.PublicKey, _authconfig.SecretKey);
-            return _modelbuilder.CreateBalances(crudeBalances);
+            string[][] crudeBalances = await HttpPostAsync<string[][]>(
+                new BalanceRequest(), _options.PublicKey, _options.SecretKey);
+            return _builder.CreateBalances(crudeBalances);
         }
     }
 }
