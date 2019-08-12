@@ -26,5 +26,14 @@ namespace KunaApi.Services.Implements
 
             return _builder.CreateOrders(crudeOrders);
         }
+
+        public async Task<IEnumerable<Order>> GetExecutedOrdersAsync(string marketMarker)
+        {
+            string[][] crudeOrders = await HttpPostAsync<string[][]>(
+                        new ExecutedOrdersRequest(marketMarker),
+                       _options.PublicKey, _options.SecretKey);
+
+            return _builder.CreateOrders(crudeOrders);
+        }
     }
 }
