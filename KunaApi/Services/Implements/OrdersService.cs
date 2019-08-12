@@ -20,11 +20,11 @@ namespace KunaApi.Services.Implements
 
         public async Task<IEnumerable<Order>> GetActiveOrdersAsync(string marketMarker)
         {
-            string[][] orders = await HttpPostAsync<string[][]>(
+            string[][] crudeOrders = await HttpPostAsync<string[][]>(
                         new ActiveOrdersRequest(marketMarker),
                        _options.PublicKey, _options.SecretKey);
 
-            return _builder.CreateOrders(orders);
+            return _builder.CreateOrders(crudeOrders);
         }
     }
 }
