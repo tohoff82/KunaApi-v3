@@ -43,5 +43,9 @@
         public static string USDollar         = "USD";
         public static string RussianRuble     = "RUB";
         public static string Euro             = "EUR";
+
+        // delisted
+        public static string GolosGold = "GBG";
+
     }
 }
