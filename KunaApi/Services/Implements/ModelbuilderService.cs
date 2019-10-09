@@ -16,7 +16,8 @@ namespace KunaApi.Services.Implements
 
             foreach (string[] crudeOrder in crudeOrders)
             {
-                orders.Add(CreateOrder(crudeOrder));
+                if (crudeOrder[3] == "golgbg" || crudeOrder[3] == "eursuah") continue;
+                    orders.Add(CreateOrder(crudeOrder));
             }
 
             return orders;
@@ -26,7 +27,7 @@ namespace KunaApi.Services.Implements
         {
             var order = new Order
             {
-                Id = long.Parse(crudeOrder[0], Any, InvariantCulture),
+                Id = int.Parse(crudeOrder[0], Any, InvariantCulture),
                 MarketMarker = crudeOrder[3],
                 CreationTime = long.Parse(crudeOrder[4], Any, InvariantCulture),
                 UpdateTime = long.Parse(crudeOrder[5], Any, InvariantCulture),
