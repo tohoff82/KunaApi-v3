@@ -1,11 +1,16 @@
-﻿namespace KunaApi.POCO.Requests
+﻿using KunaApi.Extensions;
+
+namespace KunaApi.POCO.Requests
 {
     public class TickerRequest : KunaRequest
     {
-        private TickerRequest() : base()
-            => _path.Append("/tickers");
+        public TickerRequest(string[] marketMmarkers) : base()
+        {
+            if (marketMmarkers == null) _path.Append("/tickers?symbols=ALL");
+            else _path.AppendFormat("/tickers?symbols={0}", marketMmarkers.Separate(","));
+        }
 
-        public TickerRequest(string marketMarker) : this()
-            => _path.AppendFormat("?symbols={0}", marketMarker);
+        public TickerRequest(string marketMarker)
+            => _path.AppendFormat("/tickers?symbols={0}", marketMarker);
     }
 }
