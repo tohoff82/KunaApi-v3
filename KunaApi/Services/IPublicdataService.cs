@@ -8,11 +8,11 @@ namespace KunaApi.Services
     {
         Task<Timestamp> GetTimestampAsync();
         Task<Rate> GetRateAsync(string currencyName);
+        Task<IEnumerable<Fee>> GetFeesAsync();
         Task<IEnumerable<Rate>> GetRatesAsync();
         Task<IEnumerable<Currency>> GetCurrenciesAsync();
         Task<IEnumerable<Market>> GetMarketsAsync();
-        Task<IEnumerable<Ticker>> GetTickersAsync();
-        Task<IEnumerable<Fee>> GetFeesAsync();
+        Task<IEnumerable<Ticker>> GetTickersAsync(params string[] markers);
         Task<Ticker> GetTickerAsync(string marketMarker);
         Task<Orderbook> GetOrderbookAsync(string marketMarker);
     }
