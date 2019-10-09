@@ -1,6 +1,6 @@
 ﻿namespace KunaApi.DTO.Additions
 {
-    public static class AssetUit
+    public static class AssetUnit
     {
         public static string Bitcoin  = "BTC";
         public static string Ethereum = "ETH";
@@ -36,7 +36,7 @@
         public static string StasisEuro    = "EURS";
         public static string PaytomatToken = "PTI";
 
-        public static string KunaToken = "KUN";
+        public static string KunaToken   = "KUN";
         public static string BinanceCoin = "BNB";
 
         public static string UkrainianHryvnia = "UAH";
