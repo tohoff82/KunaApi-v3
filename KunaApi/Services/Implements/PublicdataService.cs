@@ -32,9 +32,9 @@ namespace KunaApi.Services.Implements
         public async Task<IEnumerable<Fee>> GetFeesAsync()
             => await HttpGetAsync<IEnumerable<Fee>>(new FeesRequest());
 
-        public async Task<IEnumerable<Ticker>> GetTickersAsync()
+        public async Task<IEnumerable<Ticker>> GetTickersAsync(params string[] markers)
         {
-            string[][] crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest("ALL"));
+            string[][] crudeTickers = await HttpGetAsync<string[][]>(new TickerRequest(markers));
             return _builder.CreateTickerList(crudeTickers);
         }
 
