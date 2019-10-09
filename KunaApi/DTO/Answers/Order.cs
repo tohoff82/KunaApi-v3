@@ -5,7 +5,7 @@ namespace KunaApi.DTO.Answers
     public class Order
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("market_marker")]
         public string MarketMarker { get; set; }
@@ -26,7 +26,7 @@ namespace KunaApi.DTO.Answers
         public string Type { get; set; } // LIMIT or MARKET
 
         [JsonProperty("status")]
-        public string Status { get; set; } // ACTIVE, EXECUTED
+        public string Status { get; set; } // ACTIVE, EXECUTED, CANCELED
 
         [JsonProperty("side")]
         public string Side { get; set; } // BUY, SELL
