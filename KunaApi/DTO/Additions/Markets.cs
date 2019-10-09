@@ -2,6 +2,7 @@
 {
     public static class Markets
     {
+        public static string All_Markets = "ALL";
         public static string Btc_Uah   = "btcuah";
         public static string Bnb_Uah   = "bnbuah";
         public static string Eth_Uah   = "ethuah";
